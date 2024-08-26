@@ -1,0 +1,121 @@
+@import "./index.css";
+
+.account-verification {
+  /* border: 1px solid black; */
+  border-radius: 2rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+  width: 50%;
+  height: 45rem;
+  margin: 3rem auto;
+  padding: 2rem 4rem;
+}
+
+#auth-page-title {
+  width: 30rem;
+  margin: 2rem auto;
+  padding: 1rem 0;
+  background-color: #0c1848;
+  color: #ffffff;
+  border-radius: 0.8rem;
+}
+
+.account-verification > p {
+  text-align: left;
+  margin: 0.5rem 2rem;
+  font-size: 1.3rem;
+}
+
+.verification {
+  display: flex;
+  /* border: 1px solid red; */
+  text-align: left;
+  margin: 1rem 0;
+}
+
+.verification-options {
+  width: 25rem;
+  /* border: 1px solid yellow; */
+  flex: 1.4;
+}
+
+.verification-options > ul > li {
+  font-size: 1.2rem;
+  margin: 1rem 0 1rem 4rem;
+}
+
+.verification-code {
+  /* width: 25rem; */
+  height: 15rem;
+  /* border: 1px solid blue; */
+  margin: 0.5rem 0;
+  position: relative;
+  flex: 1.4;
+}
+
+.vertical-line {
+  border: 1px solid black;
+  /* height: 100%; */
+  margin: 0.5rem 1.5rem;
+}
+
+#btn-send {
+  width: 5.5rem;
+  height: 2.5rem;
+  border: none;
+  border-radius: 4rem;
+  background-color: #ee2d28;
+  color: #ffffff;
+  font-size: 1rem;
+  margin: 1rem 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#code-input {
+  position: absolute;
+  bottom: 1rem;
+}
+
+#code-input > input[type="text"] {
+  height: 3rem;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: #e7e7e7;
+  margin: 1rem 0;
+  padding: 0 0.5rem;
+}
+
+.bttns {
+  /* border: 1px solid brown; */
+  display: flex;
+  justify-content: right;
+  margin: 0 10rem;
+}
+
+#btn-back {
+  height: 4rem;
+  width: 14rem;
+  border-radius: 4rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  padding-left: 2rem;
+  background-color: #ee2d28;
+  color: #ffffff;
+}
+
+#btn-next {
+  border-radius: inherit;
+  height: inherit;
+  width: 9rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #0c1848;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
