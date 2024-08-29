@@ -1,10 +1,13 @@
-import React from "react";
-
-const TextField = () => {
+const TextField = ({ name, placeholder, fontawesomeicon }) => {
   return (
-    <>
-      <input type="text" name="" value="" />
-    </>
+    <div className="textbox">
+      <input type="text" name={name} placeholder={placeholder} value={""} />
+      <p>
+        {fontawesomeicon}
+        {/* <FontAwesomeIcon icon={faEyeSlash} /> */}
+        {/* <FontAwesomeIcon icon={faEye} /> */}
+      </p>
+    </div>
   );
 };
 

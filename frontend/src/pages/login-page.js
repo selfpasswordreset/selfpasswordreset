@@ -1,23 +1,18 @@
 import React from "react";
+import TextField from "../components/textfield";
 
 function LoginPage() {
   return (
     <div className="form-container">
-      <form>
+      <form className="login-form">
         <div className="wrapper">
           {/* <label for="username">Username or email</label> */}
           <h1>Sign into your account</h1>
-          <div className="textbox">
-            <input
-              type="text"
-              name="username"
-              placeholder="username or email"
-            />
-          </div>
+          <TextField name={"username"} placeholder={"username or email"} />
+
           {/* <label for="password">Password</label> */}
-          <div className="textbox">
-            <input type="text" name="password" placeholder="password" />
-          </div>
+          <TextField name={"password"} placeholder={"password"} />
+
           <div className="showme-checkbox">
             <input type="checkbox" name="" value="" />
             <p>show me</p>
