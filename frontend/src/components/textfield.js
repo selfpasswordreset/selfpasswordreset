@@ -1,7 +1,18 @@
-const TextField = ({ name, placeholder, fontawesomeicon }) => {
+import { useState } from "react";
+
+const TextField = ({ type, name, placeholder, fontawesomeicon }) => {
+  const [value, setValue] = useState("");
   return (
     <div className="textbox">
-      <input type="text" name={name} placeholder={placeholder} value={""} />
+      <input
+        type={type}
+        name={name}
+        placeholder={placeholder}
+        value={value}
+        onChange={(e) => {
+          setValue(e.target.value);
+        }}
+      />
       <p>
         {fontawesomeicon}
         {/* <FontAwesomeIcon icon={faEyeSlash} /> */}

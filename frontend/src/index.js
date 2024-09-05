@@ -1,11 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./css/index.css";
-import "./css/authentication-page.css";
-import "./css/create-new-password.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "@fortawesome/fontawesome-free/css/all.css";
+import "./css/index.css";
+import "./css/authentication-page.css";
+import "./css/create-new-password.css";
+import "./css/verification-page.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

@@ -3,31 +3,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import TextField from "../components/textfield";
 
-// const encryptPassword = (password) => {
-//   for (const i in password) {
-//     console.log(i);
-//   }
-// };
-
-const handleClick = () => {
-  console.log("Working");
-};
-
 function CreateNewPasswordPage() {
-  const [icon, setIcon] = useState(faEyeSlash);
-  const [password, setPassword] = useState("");
+  const [showPasswordIcon, setShowPasswordIcon] = useState(false);
+  const [showConfirmPasswordIcon, setShowConfirmPasswordIcon] = useState(false);
 
-  const changeIcon = () => {
-    if (icon === faEyeSlash) {
-      setIcon(faEye);
-    } else {
-      setIcon(faEyeSlash);
-    }
+  const toggleNewPasswordVisibility = () => {
+    setShowPasswordIcon((prevShowPasswordIcon) => !prevShowPasswordIcon);
   };
 
-  // const encryptPassword = (password) {
-
-  // }
+  const toogleConfirmPasswordVisibility = () => {
+    setShowConfirmPasswordIcon(
+      (prevShowConfirmPasswordIcon) => !prevShowConfirmPasswordIcon
+    );
+  };
 
   return (
     <div className="outer-container">
@@ -38,17 +26,25 @@ function CreateNewPasswordPage() {
           </div>
           <form className="new-password-form">
             <TextField
+              type={showPasswordIcon ? "text" : "password"}
               name={"new-password"}
               placeholder={"enter new password"}
               fontawesomeicon={
-                <FontAwesomeIcon icon={icon} onClick={changeIcon} />
+                <FontAwesomeIcon
+                  icon={showPasswordIcon ? faEye : faEyeSlash}
+                  onClick={toggleNewPasswordVisibility}
+                />
               }
             />
             <TextField
+              type={showPasswordIcon ? "text" : "password"}
               name={"confirm-new-password"}
               placeholder={"confirm new password"}
               fontawesomeicon={
-                <FontAwesomeIcon icon={icon} onClick={changeIcon} />
+                <FontAwesomeIcon
+                  icon={showConfirmPasswordIcon ? faEye : faEyeSlash}
+                  onClick={toogleConfirmPasswordVisibility}
+                />
               }
             />
             <p>

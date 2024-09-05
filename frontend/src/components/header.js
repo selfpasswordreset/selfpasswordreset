@@ -5,7 +5,7 @@ function Header() {
     <header>
       <div className="header">
         <img src={logo} alt="" />
-        <div id="header-login-btn">Login</div>
+        <div id="header-login-btn">Reset Password</div>
       </div>
     </header>
   );

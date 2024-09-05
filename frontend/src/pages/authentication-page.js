@@ -1,7 +1,7 @@
 function AuthenticationPage() {
   return (
     <div className="account-verification">
-      <div id="auth-page-title">
+      <div className="highlight-title">
         <h3>Get back into your account</h3>
       </div>
       <p>
@@ -11,9 +11,17 @@ function AuthenticationPage() {
       <div className="verification">
         <div className="verification-options">
           <ul>
-            <li>Email by alternative email address</li>
-            <li>Send Code via Phone</li>
-            <li>Enter a code from My authenticator app</li>
+            <li>
+              <a href="">Email by alternative email address</a>
+            </li>
+            <li>
+              {" "}
+              <a href="">Send Code via Phone</a>
+            </li>
+            <li>
+              {" "}
+              <a href="">Enter a code from My authenticator app</a>
+            </li>
           </ul>
         </div>
         <div className="vertical-line"></div>
