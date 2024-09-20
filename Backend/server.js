@@ -1,16 +1,27 @@
 const express = require('express');
 const app = express();
-require('dotenv').config(); // Load environment variables from .env file
-
+require('dotenv').config();
 const authRoutes = require('./routes/auth');
+const rateLimit = require('express-rate-limit');
 
-// Use JSON parser for incoming requests
+// Apply rate limiting to the login route
+const loginLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 5, // Limit each IP to 5 login attempts per window
+  message: 'Too many login attempts, please try again after 15 minutes',
+});
+
+// Middleware
 app.use(express.json());
 
-// Set up the authentication and password reset routes
+// Apply the rate limiter specifically to the login route
+app.use('/auth/login', loginLimiter);
+
+// Use routes
 app.use('/auth', authRoutes);
 
-const port = process.env.PORT || 3001;
+// Start server
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
