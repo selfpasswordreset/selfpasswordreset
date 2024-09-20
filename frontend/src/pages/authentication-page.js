@@ -1,4 +1,17 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
+
 function AuthenticationPage() {
+  const [viaLink, setViaLink] = useState({
+    type: "email",
+    data: "",
+  });
+
+  const handleClick = (type) => {
+    setViaLink({ ...viaLink, [viaLink[type]]: type });
+  };
+
+  console.log(viaLink);
   return (
     <div className="account-verification">
       <div className="highlight-title">
@@ -12,15 +25,15 @@ function AuthenticationPage() {
         <div className="verification-options">
           <ul>
             <li>
-              <a href="">Email by alternative email address</a>
+              <Link onClick={() => handleClick("email")}>
+                Send code via email address
+              </Link>
             </li>
             <li>
               {" "}
-              <a href="">Send Code via Phone</a>
-            </li>
-            <li>
-              {" "}
-              <a href="">Enter a code from My authenticator app</a>
+              <Link onClick={() => handleClick("email")}>
+                Enter a code from My authenticator app
+              </Link>
             </li>
           </ul>
         </div>
@@ -35,12 +48,12 @@ function AuthenticationPage() {
         </div>
       </div>
       <div className="bttns">
-        <div id="btn-back">
-          <p>Back</p>
-          <div id="btn-next">
-            <p>Next</p>
-          </div>
-        </div>
+        <Link id="back" className="btn" to={"/verification"}>
+          Back
+        </Link>
+        <Link id="next" className="btn" to={"/create-new-password"}>
+          Next
+        </Link>
       </div>
     </div>
   );

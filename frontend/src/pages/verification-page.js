@@ -1,8 +1,12 @@
 import { useState } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
+
 import TextField from "../components/textfield";
 import "../css/verification-page.css";
+import { useNavigate } from "react-router-dom";
 
 const VerificationPage = () => {
+  const navigate = useNavigate();
   const [value, setValue] = useState("");
   return (
     <div className="outer-container">
@@ -14,8 +18,8 @@ const VerificationPage = () => {
             character below
           </p>
           <TextField type={"text"} name={"username"} placeholder={"username"} />
-          <p className="text-left">Example: user@123@microsoft.com</p>
-          <div className="captcha-and-input">
+          <p className="text-left">Example: user123@microsoft.com</p>
+          {/* <div className="captcha-and-input">
             <div className="captcha">XYZ</div>
             <input
               type="text"
@@ -28,8 +32,15 @@ const VerificationPage = () => {
           </div>
           <p className="text-left">
             Enter the character in the picture or word in audio
-          </p>
-          <div className="btn-next-align-center">
+          </p> */}
+          {/* Google recaptcha implement */}
+          <ReCAPTCHA sitekey="6LcnQEUqAAAAAHxmUGudrUUHaeQ5-BjvJDP9cWBX" />
+          <div
+            className="btn-next-align-center"
+            onClick={() => {
+              navigate("/authentication");
+            }}
+          >
             <div className="btn-next">Next</div>
           </div>
         </div>

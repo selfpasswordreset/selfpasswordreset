@@ -1,24 +1,36 @@
 import { useState } from "react";
 
-const TextField = ({ type, name, placeholder, fontawesomeicon }) => {
-  const [value, setValue] = useState("");
+const TextField = ({
+  id,
+  onChange,
+  errorMessage,
+  fontawesomeicon,
+  value,
+
+  ...inputProps
+}) => {
+  // input focus state
+  const [focus, setFocus] = useState(false);
+
+  // handle focus
+  const handleFocus = () => {
+    setFocus(true);
+  };
+
   return (
-    <div className="textbox">
-      <input
-        type={type}
-        name={name}
-        placeholder={placeholder}
-        value={value}
-        onChange={(e) => {
-          setValue(e.target.value);
-        }}
-      />
-      <p>
-        {fontawesomeicon}
-        {/* <FontAwesomeIcon icon={faEyeSlash} /> */}
-        {/* <FontAwesomeIcon icon={faEye} /> */}
-      </p>
-    </div>
+    <>
+      <div className="textbox">
+        <input
+          {...inputProps}
+          onChange={onChange}
+          onBlur={handleFocus}
+          focused={focus.toString()}
+        />
+        {<span className="error-message">{errorMessage}</span>}
+
+        <p>{fontawesomeicon}</p>
+      </div>
+    </>
   );
 };
 
