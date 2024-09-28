@@ -1,5 +1,6 @@
 require("dotenv").config();
 
+console.log("this si the client Id: ", process.env.CLIENT_ID);
 const msalConfig = {
   auth: {
     clientId: process.env.CLIENT_ID,

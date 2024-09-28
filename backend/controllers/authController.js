@@ -1,5 +1,6 @@
 const axios = require("axios");
 const qs = require("qs");
+const { msalConfig } = require("../config/authConfig");
 const {
   generateToken,
   validateToken,
