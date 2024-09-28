@@ -1,9 +1,15 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
+import axios from "axios";
+
 import TextField from "../components/textfield";
 
 function CreateNewPasswordPage() {
+  const userId = localStorage.getItem("userId");
+  const accessToken = localStorage.getItem("accessToken");
+  const msToken = localStorage.getItem("msToken");
+
   const [showPasswordIcon, setShowPasswordIcon] = useState(false);
   const [showConfirmPasswordIcon, setShowConfirmPasswordIcon] = useState(false);
 
@@ -46,9 +52,24 @@ function CreateNewPasswordPage() {
     },
   ];
 
-  // change value of the field as user types
+  // changes the value of the field as user types
   const onChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
+  };
+
+  // handle password reset function
+  const handlePasswordReset = async (e) => {
+    e.preventDefault();
+    const response = await axios.patch(
+      "http://localhost:5001/api/reset-password",
+      {
+        userId: userId,
+        accessToken: accessToken,
+        msToken: msToken,
+        password: values.newpassword,
+      }
+    );
+    console.log(response.data);
   };
 
   return (
@@ -87,7 +108,7 @@ function CreateNewPasswordPage() {
               />
             ))}
 
-            <div className="btn-submit">
+            <div className="btn-submit" onClick={handlePasswordReset}>
               <p>Submit</p>
             </div>
           </form>

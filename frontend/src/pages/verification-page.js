@@ -1,4 +1,4 @@
-import { useState } from "react";
+// import { useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 
 import TextField from "../components/textfield";
@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 const VerificationPage = () => {
   const navigate = useNavigate();
-  const [value, setValue] = useState("");
+  // const [value, setValue] = useState("");
   return (
     <div className="outer-container">
       <div className="inner-container">

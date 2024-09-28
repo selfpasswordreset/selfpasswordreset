@@ -1,7 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import "./App.css";
-import LoginPage from "./pages/login-page";
 import Header from "./components/header";
+import LoginPage from "./pages/login-page";
+import WelcomePage from "./pages/welcome_page";
 import AuthenticationPage from "./pages/authentication-page";
 import CreateNewPasswordPage from "./pages/create-new-password-page";
 import VerificationPage from "./pages/verification-page";
@@ -14,6 +16,7 @@ export default function App() {
         <Routes>
           <Route index element={<LoginPage />} />
           <Route path="/" element={<LoginPage />} />
+          <Route path="/home" element={<WelcomePage />} />
           <Route path="/verification" element={<VerificationPage />} />
           <Route path="/authentication" element={<AuthenticationPage />} />
           <Route
