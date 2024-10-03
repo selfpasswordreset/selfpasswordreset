@@ -1,11 +1,6 @@
 const axios = require("axios");
 const qs = require("qs");
 const { msalConfig } = require("../config/authConfig");
-const {
-  generateToken,
-  validateToken,
-  invalidateToken,
-} = require("../utils/tokenUtil");
 
 // Function to handle Azure AD login token exchange
 const getToken = async (req, res) => {
@@ -17,18 +12,18 @@ const getToken = async (req, res) => {
     grant_type: "authorization_code",
     code: code,
     redirect_uri: "http://localhost:3000", // Ensure this matches your Azure AD config
-    scope: "openid profile email offline_access",
+    scope: "openid profile email offline_access https://graph.microsoft.com/.default",
   };
 
   try {
     const response = await axios.post(
-      "https://login.microsoftonline.com/d08b9f61-feef-4ff7-9994-db6c531274c5/oauth2/v2.0/token",
+      `https://login.microsoftonline.com/${process.env.TENANT_ID}/oauth2/v2.0/token`,
       qs.stringify(tokenRequest),
       { headers: { "Content-Type": "application/x-www-form-urlencoded" } }
     );
     const accessToken = response.data.access_token;
-    const token = generateToken(accessToken); // Generate 5-minute valid token
 
+    // Use the accessToken to get user details from Microsoft Graph API
     const graphResponse = await axios.get(
       "https://graph.microsoft.com/v1.0/me",
       {
@@ -40,10 +35,9 @@ const getToken = async (req, res) => {
     const id = graphResponse.data.id;
     res.status(200).json({
       success: true,
-      accessToken: token,
+      accessToken: accessToken,
       username: username,
       id: id,
-      msToken: accessToken,
     });
   } catch (err) {
     console.error("Error exchanging authorization code:", err);
@@ -65,13 +59,9 @@ const sendMfaChallenge = (req, res) => {
 
 // Reset Password for authenticated users
 const resetPassword = async (req, res) => {
-  const { newPassword, accessToken, userId, msToken } = req.body;
+  const { newPassword, msToken, userId } = req.body;
 
-  if (!validateToken(accessToken)) {
-    return res.status(400).json({ message: "Invalid or expired token." });
-  }
   try {
-    console.log("Hello World 2");
     const graphClientResponse = await axios.patch(
       `https://graph.microsoft.com/v1.0/users/${userId}`,
       {
@@ -91,7 +81,6 @@ const resetPassword = async (req, res) => {
       "Password reset for user with token:",
       graphClientResponse.data
     );
-    invalidateToken(accessToken); // Invalidate token after use
     res.status(200).json({ message: "Password reset successful!" });
   } catch (err) {
     console.error("Error resetting password:", err);
